@@ -10,10 +10,9 @@ export class Attempted { // To export the Attempted class
     try { // Try case
       const params = {
         TableName: "UserTestInstanceAnswer",// Table Name
-        IndexName: "userId-index",// Table index name to run query
-        KeyConditionExpression: "userId = :userId", // Primary condition to filter result
+        KeyConditionExpression: "userTestInstanceId = :userTestInstanceId", // Primary condition to filter result
         ExpressionAttributeValues: { 
-          ":userId": userId, // Maps placeholder value to the actual value
+          ":userTestInstanceId": `${userId}#${topicId}`, // Maps placeholder value to the actual value
         },
         ProjectionExpression: "questionId", // To project only questionId as the query result
       };

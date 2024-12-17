@@ -11,9 +11,9 @@ export class GenerateQuiz { // defines the GenerateQuiz for logic
   ) {
     this.userId = userId; // Assigns the userid to instance
     this.topicId = topicId; // Assigns the topicid to instance
-    this.numberOfEasyQuestions = numberOfEasyQuestions; // Assigns the numberofeasyquestions to instance
-    this.numberOfMediumQuestions = numberOfMediumQuestions; // Assigns the numberofmediumquestions to instance 
-    this.numberOfHardQuestions = numberOfHardQuestions; //Assigns the numberofhardquestions to instance
+    this.numberOfEasyQuestions = 4; // Assigns the numberofeasyquestions to instance
+    this.numberOfMediumQuestions = 6; // Assigns the numberofmediumquestions to instance 
+    this.numberOfHardQuestions = 5; //Assigns the numberofhardquestions to instance
     this.questions = new Questions(); // create new instance of question
     this.Attempted = new Attempted(); // create new instance of attempted
   }

@@ -7,10 +7,10 @@ export class Questions { // To export the Questions Class
     this.dynamoDbClient = DynamoDBDocumentClient.from(dynamoDbClient); // creates the new intance from the already present instance
   }
   //To fetch questions based on given parameters 
-  async fetchQuestions(topicId, difficultyLevel, limit, excludedQuestions) { // To fetch questions from the table
+  async fetchQuestions(topicId, difficultyLevel, limit, attemptedQuestions) { // To fetch questions from the table
     try { // try Case
       // Tp check if there are any excluded questions, if not, set it to null
-      const excludedQuestionsSet = excludedQuestions && excludedQuestions.length ? new Set(excludedQuestions) : null;
+      const attemptedQuestionsSet = attemptedQuestions && attemptedQuestions.length ? new Set(attemptedQuestions) : null;
       const params = { // Defines parameters for the DynamoDB query
         TableName: "q_Questions", // Table name
         IndexName: "topicId-index", // Table Index Name
@@ -18,8 +18,8 @@ export class Questions { // To export the Questions Class
         ExpressionAttributeValues: { 
           ":topicId": topicId, // Maps placeholder value to the actual value
         },
-        FilterExpression: excludedQuestionsSet ? "NOT contains(questionId, :excludedQuestion)" : undefined, //To set the FilterExpression to exclude questions based on qId, if incase of any excluded questions are still there
-        ...(excludedQuestionsSet),
+        FilterExpression: attemptedQuestionsSet ? "contains(questionId, :attemptedQuestions)" : undefined, //To set the FilterExpression to exclude questions based on qId, if incase of any excluded questions are still there
+        ...(attemptedQuestionsSet),
         Limit: limit, // To limit the result based on the input limit provided
       };
       const result = await this.dynamoDbClient.send(new QueryCommand(params)); // Sends the query to the dynamoDB
