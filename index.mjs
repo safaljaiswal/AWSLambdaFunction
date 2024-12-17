@@ -20,7 +20,6 @@ export const handler = async (event, context) => { // async function to handle e
     );
 
     const result = await command.execute(); // Run the GenerateQuiz command and saves the result
-
     return {
       statusCode: 200, // on being successful return the status code 200 and result as a response 
       body: result,

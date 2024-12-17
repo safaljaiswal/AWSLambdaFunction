@@ -1,5 +1,5 @@
 import { Questions } from "./Questions.js"; // To import the Questions
-import { Answers } from "./Answers.js"; // To import the Answers
+import { Attempted } from "./Attempted.js"; // To import the Answers
 
 export class GenerateQuiz { // defines the GenerateQuiz for logic
   constructor( // Constructor ti initialize the parameters
@@ -15,11 +15,11 @@ export class GenerateQuiz { // defines the GenerateQuiz for logic
     this.numberOfMediumQuestions = numberOfMediumQuestions; // Assigns the numberofmediumquestions to instance 
     this.numberOfHardQuestions = numberOfHardQuestions; //Assigns the numberofhardquestions to instance
     this.questions = new Questions(); // create new instance of question
-    this.Answers = new Answers(); // create new instance of answers
+    this.Attempted = new Attempted(); // create new instance of attempted
   }
 
   async execute() { //executes the logic for generating the quiz
-    const attemptedQuestions = await this.Answers.getUserAttemptedQuestions( // fetch the questions user already attempted
+    const attemptedQuestions = await this.Attempted.getUserAttemptedQuestions( // fetch the questions user already attempted
         this.userId, // passing userId to fetch attempted questions for this user
         this.topicId // passing topic id to filter out attempted questions from this topic
       );
